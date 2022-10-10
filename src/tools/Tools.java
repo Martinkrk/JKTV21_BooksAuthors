@@ -5,6 +5,7 @@
  */
 package tools;
 
+import java.util.Scanner;
 import myclasses.Author;
 import myclasses.Book;
 
@@ -13,15 +14,35 @@ import myclasses.Book;
  * @author pupil
  */
 public class Tools {
-    public Author createAuthor(String first, String last){
-        Author author = new Author();
-        author.setFirstName(first);
-        author.setLastName(last);
-        return author;
+    Scanner scn = new Scanner(System.in);
+    
+    public Author[] createAuthors(){
+        
+        System.out.println("How many authors?");
+        int authorsNum = scn.nextInt();
+        scn.nextLine();
+        
+        Author[] authors = new Author[authorsNum];
+        
+        for(int j=0; j < authorsNum; j++){
+            System.out.printf("Author %d. Enter first name%n", j+1);
+            String first = scn.nextLine();
+            System.out.printf("Author %d. Enter last name%n", j+1);
+            String last = scn.nextLine();
+            
+            authors[j] = new Author();
+            authors[j].setFirstName(first);
+            authors[j].setLastName(last);
+        }
+        
+        return authors;
     }
-    public Book createBook(String title){
+    public Book createBook(int i){
         Book book = new Book();
-        book.setTitle(title);
+        System.out.println("Title of the book: ");
+        book.setId(i+1);
+        book.setTitle(scn.nextLine());
+        book.setAuthors(createAuthors());
         return book;
     }
 }
