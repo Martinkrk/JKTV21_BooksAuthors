@@ -12,13 +12,15 @@ import java.util.Arrays;
  * @author pupil
  */
 public class Book {
+    private int id;
     private String title;
     private Author[] authors = new Author[0];
 
     public Book() {
     }
 
-    public Book(String title, Author[] authors) {
+    public Book(String title, Author[] authors, int id) {
+        this.id = id;
         this.title = title;
         this.authors = authors;
     }
@@ -43,6 +45,16 @@ public class Book {
     public void setAuthors(Author[] authors) {
         this.authors = authors;
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+    
+    
     
     public void addAuthor(Author author){
         Author[] newAuthors = Arrays.copyOf(authors, authors.length+1);
@@ -53,7 +65,7 @@ public class Book {
 
     @Override
     public String toString() {
-        return "Book{" + "title=" + getTitle() + ", authors=" + getAuthors() + '}';
+        return "\nBook " + getId() + ": " + getTitle() + "\n" + getAuthors();
     }
         
 }
